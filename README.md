@@ -1,7 +1,7 @@
 # 테스트 방법
 ## 1) 장소 검색
 ### HTTP Method: GET
-### URI: http://localhost:8080/api/v1/place?query={검색 키워드}
+### URI: http://localhost:8080/api/v1/place?query={검색키워드}
 ## 2) 검색 키워드 목록
 ### HTTP Method: GET
 ### URI: http://localhost:8080/api/v1/place/keyword-rank
@@ -12,9 +12,3 @@
 ## spring-boot-starter-webflux: 외부 API를 호출하기 위함
 ## com.h2database: 임시 DB를 사용하기 위함
 ## org.projectlombok: Entity 및 Dto 코드 작성 간소화를 위함# searchdemo
-# searchdemo
-# searchdemo
-# searchdemo
-# searchdemo
-# searchdemo
-# searchdemo
