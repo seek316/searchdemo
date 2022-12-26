@@ -28,7 +28,6 @@ public class SearchPlaceService {
     public static final String EMPTY = "";
     public static final String SPACE = " ";
     public static final String REMOVE_HTML = "<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>";
-
     private final KaSearchService kaSearchService;
     private final NaSearchService naSearchService;
     private final SearchKeywordRepository searchKeywordRepository;
@@ -38,27 +37,31 @@ public class SearchPlaceService {
         int subOrder = 1;
 
         // 카카오
-        Mono<KaResponseEntity> ka = kaSearchService.findPlaceListByQuery(query);
-        for (KaPlace kaPlace : ka.block().getDocuments()) {
-            resultList.add(
-                    Place.builder()
-                            .placeName(kaPlace.getPlaceName().replaceAll(SPACE, EMPTY).replaceAll(REMOVE_HTML, EMPTY))
-                            .roadAddress(kaPlace.getRoadAddressName())
-                            .subOrder(subOrder++)
-                            .build()
-            );
+        KaResponseEntity kaResponseEntity = kaSearchService.findPlaceListByQuery(query);
+        if (kaResponseEntity != null) {
+            for (KaPlace kaPlace : kaResponseEntity.getDocuments()) {
+                resultList.add(
+                        Place.builder()
+                                .placeName(kaPlace.getPlaceName().replaceAll(SPACE, EMPTY).replaceAll(REMOVE_HTML, EMPTY))
+                                .roadAddress(kaPlace.getRoadAddressName())
+                                .subOrder(subOrder++)
+                                .build()
+                );
+            }
         }
 
         // 네이버
-        Mono<NaPlace> na = naSearchService.findPlaceListByQuery(query);
-        for (NaItem item : na.block().getItems()) {
-            resultList.add(
-                    Place.builder()
-                            .placeName(item.getTitle().replaceAll(SPACE, EMPTY).replaceAll(REMOVE_HTML, EMPTY))
-                            .roadAddress(item.getRoadAddress())
-                            .subOrder(subOrder++)
-                            .build()
-            );
+        NaPlace naPlace = naSearchService.findPlaceListByQuery(query);
+        if (naPlace != null) {
+            for (NaItem item : naPlace.getItems()) {
+                resultList.add(
+                        Place.builder()
+                                .placeName(item.getTitle().replaceAll(SPACE, EMPTY).replaceAll(REMOVE_HTML, EMPTY))
+                                .roadAddress(item.getRoadAddress())
+                                .subOrder(subOrder++)
+                                .build()
+                );
+            }
         }
 
         for (Place place : resultList) {
@@ -80,6 +83,4 @@ public class SearchPlaceService {
     public List<SearchKeywordRank> findSearchKeywordRank(Integer limit) {
         return searchKeywordRepository.findGroupBySearchKeywordWithNativeQuery(limit);
     }
-
-
 }

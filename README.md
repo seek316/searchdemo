@@ -1,10 +1,17 @@
 # 테스트 방법
 ## 1) 장소 검색
 ### HTTP Method: GET
-### URI: http://localhost:8080/api/v1/place?query={검색키워드}
+
+    curl http://localhost:8080/api/v1/place?query=기업은행
+    curl http://localhost:8080/api/v1/place?query=국민은행
+    curl http://localhost:8080/api/v1/place?query=우리은행
+    curl http://localhost:8080/api/v1/place?query=하나은행
+
 ## 2) 검색 키워드 목록
 ### HTTP Method: GET
-### URI: http://localhost:8080/api/v1/place/keyword-rank
+
+    http://localhost:8080/api/v1/place/keyword-rank
+
 ------------
 # 외부 라이브러리에 대해 사용 목적과 선택 사유
 ## spring-boot-starter-web: 스프링 웹 라이블러리를 사용하기 위함

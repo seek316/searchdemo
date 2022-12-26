@@ -1,10 +1,12 @@
 package com.example.searchdemo.place.na.service;
 
 import com.example.searchdemo.place.na.domain.NaPlace;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
+@Slf4j
 @Service
 public class NaSearchService {
 
@@ -25,17 +27,23 @@ public class NaSearchService {
                 .build();
     }
 
-    public Mono<NaPlace> findPlaceListByQuery(String query) {
-        // 1.요청
-        Mono<NaPlace> flux = webClient
-                .get()
-                .uri(uriBuilder -> uriBuilder
-                        .path("/v1/search/local.json")
-                        .queryParam("query", query)
-                        .queryParam("display", 5)
-                        .build())
-                .retrieve()
-                .bodyToMono(NaPlace.class);
-        return flux;
+    public NaPlace findPlaceListByQuery(String query) {
+        NaPlace result;
+        try {
+            Mono<NaPlace> mono = webClient
+                    .get()
+                    .uri(uriBuilder -> uriBuilder
+                            .path("/v1/search/local.json")
+                            .queryParam("query", query)
+                            .queryParam("display", 5)
+                            .build())
+                    .retrieve()
+                    .bodyToMono(NaPlace.class);
+            result = mono.block();
+        } catch (Exception e) {
+            log.error(e.getMessage());
+            result = null;
+        }
+        return result;
     }
 }

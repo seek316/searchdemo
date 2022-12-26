@@ -1,11 +1,13 @@
 package com.example.searchdemo.place.ka.service;
 
 import com.example.searchdemo.place.ka.domain.KaResponseEntity;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
+@Slf4j
 @Service
 public class KaSearchService {
 
@@ -20,17 +22,23 @@ public class KaSearchService {
                 .build();
     }
 
-    public Mono<KaResponseEntity> findPlaceListByQuery(String query) {
-        // 1.요청
-        Mono<KaResponseEntity> flux = webClient
-                .get()
-                .uri(uriBuilder -> uriBuilder
-                        .path("/v2/local/search/keyword.json")
-                        .queryParam("query", query)
-                        .queryParam("size", 5)
-                        .build())
-                .retrieve()
-                .bodyToMono(KaResponseEntity.class);
-        return flux;
+    public KaResponseEntity findPlaceListByQuery(String query) {
+        KaResponseEntity result;
+        try {
+            Mono<KaResponseEntity> mono = webClient
+                    .get()
+                    .uri(uriBuilder -> uriBuilder
+                            .path("/v2/local/search/keyword.json")
+                            .queryParam("query", query)
+                            .queryParam("size", 5)
+                            .build())
+                    .retrieve()
+                    .bodyToMono(KaResponseEntity.class);
+            result = mono.block();
+        } catch (Exception e) {
+            log.error(e.getMessage());
+            result = null;
+        }
+        return result;
     }
 }
