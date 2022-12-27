@@ -14,7 +14,6 @@ import com.example.searchdemo.util.CommonUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -32,7 +31,7 @@ public class SearchPlaceService {
     private final NaSearchService naSearchService;
     private final SearchKeywordRepository searchKeywordRepository;
 
-    public List<Place> findPlaceListByQuery(@RequestParam String query) {
+    public List<Place> findPlaceListByQuery(String query) {
         List<Place> resultList = new ArrayList<>();
         int subOrder = 1;
 
