@@ -13,6 +13,7 @@ import com.example.searchdemo.place.na.service.NaSearchService;
 import com.example.searchdemo.util.CommonUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
@@ -75,10 +76,12 @@ public class SearchPlaceService {
                 , Place::getPlaceName);
     }
 
+    @Transactional
     public SearchKeyword createSearchKeyword(String query) {
         return searchKeywordRepository.save(SearchKeyword.builder().keyword(query).build());
     }
 
+    @Transactional(readOnly = true)
     public List<SearchKeywordRank> findSearchKeywordRank(Integer limit) {
         return searchKeywordRepository.findGroupBySearchKeywordWithNativeQuery(limit);
     }
