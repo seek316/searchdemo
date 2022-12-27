@@ -53,7 +53,7 @@
 * spring-boot-starter-data-jpa: DB ORM JPA를 사용하기 위함
 * spring-boot-starter-webflux: API를 호출 라이브러리 를 사용하기 위함
 * com.h2database: 임시 DB를 사용하기 위함
-* org.projectlombok: Entity 및 Dto 코드 작성 간소화를 위함# searchdemo
+* org.projectlombok: domain 코드 작성 간소화를 위함
 
 ------------
 ## 기술적 요구사항
