@@ -131,7 +131,8 @@
 ```
 
 * 지속적 유지 보수 및 확장에 용이한 아키텍처에 대한 설계
-** API 제공자 별 package 구조 분리
+
+API 제공자 별 package 구조 분리
 ![image](https://user-images.githubusercontent.com/121388755/209666785-4852e85e-4f85-4df1-b9b7-5f31470fb771.png)
 
 
