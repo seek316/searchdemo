@@ -4,11 +4,38 @@
 
     curl http://localhost:8080/api/v1/place?query=우리은행
     curl http://localhost:8080/api/v1/place?query=우리은행본점
+    curl http://localhost:8080/api/v1/place?query=우리은행본점
+    curl http://localhost:8080/api/v1/place?query=하나은행
+    curl http://localhost:8080/api/v1/place?query=하나은행
     curl http://localhost:8080/api/v1/place?query=하나은행
     curl http://localhost:8080/api/v1/place?query=SC제일은행
+    curl http://localhost:8080/api/v1/place?query=SC제일은행
+    curl http://localhost:8080/api/v1/place?query=SC제일은행
+    curl http://localhost:8080/api/v1/place?query=SC제일은행
+    curl http://localhost:8080/api/v1/place?query=IBK기업은행
+    curl http://localhost:8080/api/v1/place?query=IBK기업은행
+    curl http://localhost:8080/api/v1/place?query=IBK기업은행
+    curl http://localhost:8080/api/v1/place?query=IBK기업은행
     curl http://localhost:8080/api/v1/place?query=IBK기업은행
     curl http://localhost:8080/api/v1/place?query=국민은행
+    curl http://localhost:8080/api/v1/place?query=국민은행
+    curl http://localhost:8080/api/v1/place?query=국민은행
+    curl http://localhost:8080/api/v1/place?query=국민은행
+    curl http://localhost:8080/api/v1/place?query=국민은행
+    curl http://localhost:8080/api/v1/place?query=국민은행
     curl http://localhost:8080/api/v1/place?query=새마을금고
+    curl http://localhost:8080/api/v1/place?query=새마을금고
+    curl http://localhost:8080/api/v1/place?query=새마을금고
+    curl http://localhost:8080/api/v1/place?query=새마을금고
+    curl http://localhost:8080/api/v1/place?query=새마을금고
+    curl http://localhost:8080/api/v1/place?query=새마을금고
+    curl http://localhost:8080/api/v1/place?query=GS25
+    curl http://localhost:8080/api/v1/place?query=GS25
+    curl http://localhost:8080/api/v1/place?query=CU
+    curl http://localhost:8080/api/v1/place?query=CU
+    curl http://localhost:8080/api/v1/place?query=세븐일레븐
+    curl http://localhost:8080/api/v1/place?query=세븐일레븐
+    curl http://localhost:8080/api/v1/place?query=이마트
 
 ## 2) 검색 키워드 목록
 ### HTTP Method: GET
