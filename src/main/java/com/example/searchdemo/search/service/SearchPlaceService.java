@@ -5,7 +5,7 @@ import com.example.searchdemo.search.domain.SearchKeyword;
 import com.example.searchdemo.search.domain.SearchKeywordRepository;
 import com.example.searchdemo.search.domain.SearchKeywordRank;
 import com.example.searchdemo.place.ka.domain.KaPlace;
-import com.example.searchdemo.place.ka.domain.KaResponseEntity;
+import com.example.searchdemo.place.ka.domain.KaResponse;
 import com.example.searchdemo.place.ka.service.KaSearchService;
 import com.example.searchdemo.place.na.domain.NaItem;
 import com.example.searchdemo.place.na.domain.NaPlace;
@@ -36,9 +36,9 @@ public class SearchPlaceService {
         int subOrder = 1;
 
         // 카카오
-        KaResponseEntity kaResponseEntity = kaSearchService.findPlaceListByQuery(query);
-        if (kaResponseEntity != null) {
-            for (KaPlace kaPlace : kaResponseEntity.getDocuments()) {
+        KaResponse kaResponse = kaSearchService.findPlaceListByQuery(query);
+        if (kaResponse != null) {
+            for (KaPlace kaPlace : kaResponse.getDocuments()) {
                 resultList.add(
                         Place.builder()
                                 .placeName(kaPlace.getPlaceName().replaceAll(SPACE, EMPTY).replaceAll(REMOVE_HTML, EMPTY))

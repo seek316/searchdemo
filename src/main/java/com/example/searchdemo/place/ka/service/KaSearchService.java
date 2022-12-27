@@ -1,11 +1,10 @@
 package com.example.searchdemo.place.ka.service;
 
-import com.example.searchdemo.place.ka.domain.KaResponseEntity;
+import com.example.searchdemo.place.ka.domain.KaResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
-import reactor.core.publisher.Mono;
 
 @Slf4j
 @Service
@@ -22,10 +21,10 @@ public class KaSearchService {
                 .build();
     }
 
-    public KaResponseEntity findPlaceListByQuery(String query) {
-        KaResponseEntity result;
+    public KaResponse findPlaceListByQuery(String query) {
+        KaResponse result;
         try {
-            Mono<KaResponseEntity> mono = webClient
+            result = webClient
                     .get()
                     .uri(uriBuilder -> uriBuilder
                             .path("/v2/local/search/keyword.json")
@@ -33,8 +32,8 @@ public class KaSearchService {
                             .queryParam("size", 5)
                             .build())
                     .retrieve()
-                    .bodyToMono(KaResponseEntity.class);
-            result = mono.block();
+                    .bodyToMono(KaResponse.class)
+                    .block();
         } catch (Exception e) {
             log.error(e.getMessage());
             result = null;

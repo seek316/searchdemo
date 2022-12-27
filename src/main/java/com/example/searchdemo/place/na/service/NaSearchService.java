@@ -4,7 +4,6 @@ import com.example.searchdemo.place.na.domain.NaPlace;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
-import reactor.core.publisher.Mono;
 
 @Slf4j
 @Service
@@ -30,7 +29,7 @@ public class NaSearchService {
     public NaPlace findPlaceListByQuery(String query) {
         NaPlace result;
         try {
-            Mono<NaPlace> mono = webClient
+            result = webClient
                     .get()
                     .uri(uriBuilder -> uriBuilder
                             .path("/v1/search/local.json")
@@ -38,8 +37,8 @@ public class NaSearchService {
                             .queryParam("display", 5)
                             .build())
                     .retrieve()
-                    .bodyToMono(NaPlace.class);
-            result = mono.block();
+                    .bodyToMono(NaPlace.class)
+                    .block();
         } catch (Exception e) {
             log.error(e.getMessage());
             result = null;

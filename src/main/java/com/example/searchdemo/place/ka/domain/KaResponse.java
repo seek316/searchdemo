@@ -9,7 +9,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class KaResponseEntity {
+public class KaResponse {
     private List<KaPlace> documents;
     private KaMeta meta;
 }
